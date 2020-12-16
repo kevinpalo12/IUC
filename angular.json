@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "IUC"
+  "defaultProject": "IUC",
+  "cli": {
+    "analytics": false
+  }
 }
