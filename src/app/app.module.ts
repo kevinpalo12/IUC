@@ -18,6 +18,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AutenticarService } from './services/autenticar.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ListaEstudiantesComponent } from './coordinador/lista-estudiantes/lista-estudiantes.component';
+import { ListaAyudasComponent } from './coordinador/lista-ayudas/lista-ayudas.component';
+import { GruposComponent } from './coordinador/grupos/grupos.component';
+import { ListaProfesoresComponent } from './coordinador/lista-profesores/lista-profesores.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +31,11 @@ import { HttpClientModule } from '@angular/common/http';
     AcudienteComponent,
     HojaVidaComponent,
     DashBoardComponent,
-    NavBarComponent
+    NavBarComponent,
+    ListaEstudiantesComponent,
+    ListaAyudasComponent,
+    GruposComponent,
+    ListaProfesoresComponent
   ],
   imports: [
     BrowserModule,
