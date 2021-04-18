@@ -1,13 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalConstants } from '../common/global.constants';
 
-import { HttpClient } from '@angular/common/http';
-
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AutenticarService {
+
   private URL = GlobalConstants.URL;
   nombreInicio ='';
 
