@@ -23,7 +23,7 @@ export const routeList=[
             component: DashBoardComponent,
           },
           {
-            path: 'estudiante',
+            path: 'estudiante/page/:page',
             component: ListaEstudiantesComponent,
           },
           {

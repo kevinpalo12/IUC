@@ -1,4 +1,3 @@
-import { toRelativeImport } from "@angular/compiler-cli/src/ngtsc/file_system";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AutenticarService } from "../services/autenticar.service";

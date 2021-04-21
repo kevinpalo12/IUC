@@ -37,6 +37,13 @@ export class DashBoardComponent implements OnInit {
 
   navegacion(caso) {
 
-    this.router.navigate(['coordinador/' + caso]);
+    if(caso==='estudiante'){
+      
+    this.router.navigate(['coordinador/' + caso+'/page/0']);
+    }
+    else{
+
+      this.router.navigate(['coordinador/' + caso]);
+    }
   }
 }

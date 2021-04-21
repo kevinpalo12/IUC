@@ -22,6 +22,10 @@ import { ListaEstudiantesComponent } from './coordinador/lista-estudiantes/lista
 import { ListaAyudasComponent } from './coordinador/lista-ayudas/lista-ayudas.component';
 import { GruposComponent } from './coordinador/grupos/grupos.component';
 import { ListaProfesoresComponent } from './coordinador/lista-profesores/lista-profesores.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginatorComponent } from './common/paginator/paginator.component';
+import { CrearEstudianteComponent } from './coordinador/lista-estudiantes/crear-estudiante/crear-estudiante.component';
+import { EditarEstudianteComponent } from './coordinador/lista-estudiantes/editar-estudiante/editar-estudiante.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +39,10 @@ import { ListaProfesoresComponent } from './coordinador/lista-profesores/lista-p
     ListaEstudiantesComponent,
     ListaAyudasComponent,
     GruposComponent,
-    ListaProfesoresComponent
+    ListaProfesoresComponent,
+    PaginatorComponent,
+    CrearEstudianteComponent,
+    EditarEstudianteComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ import { ListaProfesoresComponent } from './coordinador/lista-profesores/lista-p
     NgbModule,
     ReactiveFormsModule,
     NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
 
   ],
   providers: [AutenticarService],
