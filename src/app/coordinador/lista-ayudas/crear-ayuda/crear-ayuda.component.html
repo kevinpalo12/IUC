@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h4 class="modal-title">Crear Ayuda</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="p-3 modal-body">
+    <div class="row">
+
+        <div class="row p-3">
+            <form [formGroup]="regularForm" >
+                <div class="col-sm-12">
+                    <h3>Datos Basicos</h3>
+                </div>
+                <div class="formulario row col-sm-12 p-3">
+
+                    <div class="form-group col-sm-6">
+                        <label for="descripcion">Nombre</label>
+                        <input #descripcion type="text" class="form-control" id="descripcion" name="descripcion"
+                            aria-describedby="emailHelp" placeholder="Nombre" formControlName="descripcion">
+                    </div>
+                    <div class="form-check">
+                        <label for="activo">¿Activo?</label>
+                        <input type="checkbox" #activo class="form-control" id="activo"  formControlName="activo" checked>
+
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="entregadoDesde"> Fecha primera Entrega</label>
+                        <input #entregadoDesde type="date" class="form-control" id="entregadoDesde" name="entregadoDesde"
+                            aria-describedby="emailHelp" placeholder="" formControlName="entregadoDesde">
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="ultimaEntrega"> Fecha proxima entrega</label>
+                        <input #ultimaEntrega type="date" class="form-control" id="ultimaEntrega" name="ultimaEntrega"
+                            aria-describedby="ultimaEntrega" placeholder="" formControlName="ultimaEntrega">
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success col-sm-4" (click)="crearAyuda()">Registrar <i
+            class="fas fa-plus-circle"></i></button>
+    <button class="btn btn-danger col-sm-4" (click)="close()">Cancelar <i class="fas fa-times"></i></button>
+</div>

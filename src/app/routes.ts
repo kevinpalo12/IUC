@@ -35,7 +35,7 @@ export const routeList=[
             component: GruposComponent,
           },
           {
-            path: 'ayudas',
+            path: 'ayudas/page/:page',
             component: ListaAyudasComponent,
           },
           {

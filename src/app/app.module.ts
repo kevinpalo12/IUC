@@ -26,6 +26,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaginatorComponent } from './common/paginator/paginator.component';
 import { CrearEstudianteComponent } from './coordinador/lista-estudiantes/crear-estudiante/crear-estudiante.component';
 import { EditarEstudianteComponent } from './coordinador/lista-estudiantes/editar-estudiante/editar-estudiante.component';
+import { CrearAyudaComponent } from './coordinador/lista-ayudas/crear-ayuda/crear-ayuda.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { EditarEstudianteComponent } from './coordinador/lista-estudiantes/edita
     ListaProfesoresComponent,
     PaginatorComponent,
     CrearEstudianteComponent,
-    EditarEstudianteComponent
+    EditarEstudianteComponent,
+    CrearAyudaComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,124 @@
-<p>lista-ayudas works!</p>
+<div class="row mx-auto">
+    <div class="col-sm-3 mx-auto">
+        <h4>Gestion de Ayudas</h4>
+        <div class="col-sm-12">
+            <a class="btn btn-success col-sm-12" (click)="crearAyuda()">Crear Ayuda <i
+                    class="fas fa-cart-plus pl-4"></i></a>
+        </div>
+        <hr>
+        <form [formGroup]="regularForm">
+            <h4>Programar Entrega</h4>
+            <div class="col-sm-12 pt-2">
+                <select class="form-control col-sm-12" #ayuda id="ayuda" formControlName="id">
+                    <option value="" selected>Seleccione Ayuda...</option>
+                    <option value="{{ayuda.id}}" *ngFor="let ayuda of ayudasCompletas">{{ayuda.descripcion}}</option>
+                </select>
+
+            </div>
+            <div class="col-sm-12 pt-2">
+                <label for="proxima"> Proxima Entrega</label>
+                <input #entregadoDesde type="date" class="form-control" id="proxima" name="proxima"
+                    aria-describedby="proxima" placeholder="" formControlName="proxima">
+
+            </div>
+            <div class="col-sm-12 pt-2">
+
+                <a class="btn btn-warning col-sm-12" (click)="programarEntrega()">Programar Entrega<i
+                        class="far fa-calendar-plus pl-2"></i></a>
+
+            </div>
+        </form>
+        <hr>
+        <div class="card-body text-secondary col-sm-12">
+            <h5 class="card-title">Listado de ayudas</h5>
+            <div *ngIf="ayudas?.length<=0" class="alert alert-info nohay">
+                No hay registros en la base de datos
+            </div>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" *ngIf="ayudas?.length>0">
+                    <thead>
+                        <tr>
+                            <th>Nombre </th>
+                            <th>Cant. Beneficiarios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ayuda of ayudas">
+                            <th>{{ayuda.descripcion}}</th>
+                            <td>{{ayuda.count}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="vl"></div>
+    <div class="col-sm-8">
+        <form [formGroup]="formFiltro">
+            <div class="formulario row">
+                <div class="form-group col-sm-6">
+                    <label for="Ingreso">
+                        Ayuda
+                    </label>
+                    <select class="form-control" #ayuda id="ayuda" formControlName="idAyuda">
+                        <option value="" selected>Seleccione Ayuda...</option>
+                        <option value="{{ayuda.id}}" *ngFor="let ayuda of ayudasCompletas">{{ayuda.descripcion}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="Ingreso">Grupo</label>
+                    <select class="form-control" #grupo id="grupo" formControlName="idGrupo">
+                        <option value="" selected>Seleccione Grupo...</option>
+                        <option value="{{gru.id}}" *ngFor="let gru of grupos">{{gru.grado+'-'+gru.identificador+ ':'
+                            +gru.profesor.nombre}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="fecha">Identificación</label>
+                    <input #documento type="text" class="form-control" id="documento"
+                        aria-describedby="documento" placeholder="documento" formControlName="documento" value="">
+                </div>
+                <div class="from-group col-sm-2 buttons">
+                    <label for="fecha">Buscar</label>
+                    <button type="submit" class="btn btn-success col-sm-12 mx-auto" (click)="filtrar()">Buscar <i
+                            class="fas fa-search float-right"></i></button>
+                </div>
+            </div>
+
+        </form>
+        <hr>
+        <div class="card-body text-secondary col-sm-12">       
+            <div *ngIf="estudiantes?.length<=0" class="alert alert-info nohay">
+                No hay registros en la base de datos
+            </div>
+            <table class="table table-bordered table-striped" *ngIf="estudiantes?.length>0">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Beneficio</th>
+                        <th>Grupo</th>
+                        <th colspan="2">Total: {{paginador.totalElements}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudiante of estudiantes">
+                        <td>{{estudiante.documento}}</td>
+                        <td>{{estudiante.nombre}}</td>
+                        <td>{{estudiante.apellido}}</td>
+                        <td>{{estudiante.ayuda}}</td>
+                        <td>{{estudiante.grupo.grado+' - '+estudiante.grupo.identificador }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="float-right">
+                <paginator-nav *ngIf="paginador" [paginador]="paginador" [lista]="'/coordinador/ayudas/page/'"></paginator-nav>
+            </div>
+           
+        </div>
+    </div>
+</div>
