@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AyudaService } from 'src/app/services/Coordinador/ayuda.service';
 import Swal from 'sweetalert2';
@@ -23,12 +23,8 @@ export class CrearAyudaComponent implements OnInit {
   ngOnInit(): void {
     this.regularForm = new FormGroup({
       'descripcion': new FormControl(),
-      'activo': new FormControl(),
-      'entregadoDesde': new FormControl(),
-      'ultimaEntrega': new FormControl(),
+      'fechaEntrega': new FormControl(null, [Validators.required])
     }, { updateOn: 'change' })
-
-    this.regularForm.controls.activo.setValue(true);
   }
 
   crearAyuda() {

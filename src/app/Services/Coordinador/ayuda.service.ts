@@ -28,6 +28,6 @@ export class AyudaService {
   }
 
   listaEstudiante(filtro,page):Observable<any>{
-    return this.http.post(this.urlEndPoint+`listFiltro/${page}`,filtro);
+    return this.http.get(this.urlEndPoint+`listFiltro/${filtro}/${page}`);
   }
 }

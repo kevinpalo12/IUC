@@ -34,14 +34,12 @@ export class ListaAyudasComponent implements OnInit {
     this.listarAyudas();
 
     this.regularForm = new FormGroup({
-      'id': new FormControl(),
-      'proxima': new FormControl()
+      'descripcion': new FormControl(null, [Validators.required]),
+      'fechaEntrega': new FormControl(null, [Validators.required])
     }, { updateOn: 'change' })
 
     this.formFiltro = new FormGroup({
-      'documento': new FormControl(),
-      'idGrupo': new FormControl(),
-      'idAyuda': new FormControl()
+      'descripcion': new FormControl()
     }, { updateOn: 'change' })
 
     this.filtrar();
@@ -56,20 +54,20 @@ export class ListaAyudasComponent implements OnInit {
       }
       let filtro = this.formFiltro.value;
       filtro = {
-        'documento': filtro.documento || '',
-        'idGrupo': filtro.idGrupo || '%%',
-        'idAyuda': filtro.idAyuda || '%%'
+        'descripcion': filtro.descripcion || '@@'
       }
-      this.ayudaService.listaEstudiante(filtro, page).subscribe(res => {
+      this.ayudaService.listaEstudiante(filtro.descripcion, page).subscribe(res => {
         this.estudiantes = res.lista.content;
         this.paginador = res.lista;
       })
     })
   }
 
+  quitarEstudiante(estudiante){
+    console.log(estudiante)
+  }
   programarEntrega() {
     let entrega = this.regularForm.value;
-    let ayudadita = this.ayudasCompletas.filter(ayu => ayu.id == entrega.id);
 
     const swalWithBootstrapButtons = swal.mixin({
       customClass: {
@@ -81,7 +79,7 @@ export class ListaAyudasComponent implements OnInit {
 
     swalWithBootstrapButtons.fire({
       title: 'Está seguro?',
-      html: `Crear Entrega para la ayuda <b>${ayudadita[0].descripcion}</b>`,
+      html: `Crear Entrega para la ayuda <b>${entrega.descripcion}</b> en la fecha <b>${entrega.descripcion}</b>`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Si, Crear',
@@ -89,9 +87,8 @@ export class ListaAyudasComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        let ayuda = this.regularForm.value;
-        this.ayudaService.actualizarEntrega(entrega).subscribe(res => {
-          swal.fire(`Entrega para la ayuda: ${res.ayuda.descripcion} creada con éxito!`, `Proxima entrega ${new Date(res.ayuda.proximaEntrega).toLocaleDateString()}`, 'success');
+        this.ayudaService.crear(entrega).subscribe(res => {
+          swal.fire(`Entrega para la ayuda: ${res.ayuda.descripcion} creada con éxito!`, `Proxima entrega ${new Date(res.ayuda.fechaEntrega).toLocaleDateString()}`, 'success');
         })
       }
     })

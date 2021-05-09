@@ -9,22 +9,22 @@
         <form [formGroup]="regularForm">
             <h4>Programar Entrega</h4>
             <div class="col-sm-12 pt-2">
-                <select class="form-control col-sm-12" #ayuda id="ayuda" formControlName="id">
+                <label for="fechaEntrega">Ayuda</label>
+                <select class="form-control col-sm-12" #descripcion id="descripcion" formControlName="descripcion">
                     <option value="" selected>Seleccione Ayuda...</option>
-                    <option value="{{ayuda.id}}" *ngFor="let ayuda of ayudasCompletas">{{ayuda.descripcion}}</option>
+                    <option value="{{ayuda.descripcion}}" *ngFor="let ayuda of ayudas">{{ayuda.descripcion}}</option>
                 </select>
 
             </div>
             <div class="col-sm-12 pt-2">
-                <label for="proxima"> Proxima Entrega</label>
-                <input #entregadoDesde type="date" class="form-control" id="proxima" name="proxima"
-                    aria-describedby="proxima" placeholder="" formControlName="proxima">
-
+                <label for="fechaEntrega">Proxima Entrega</label>
+                <input #entregadoDesde type="date" class="form-control" id="fechaEntrega" name="fechaEntrega"
+                    aria-describedby="fechaEntrega" placeholder="" formControlName="fechaEntrega">
             </div>
             <div class="col-sm-12 pt-2">
 
-                <a class="btn btn-warning col-sm-12" (click)="programarEntrega()">Programar Entrega<i
-                        class="far fa-calendar-plus pl-2"></i></a>
+                <button class="btn btn-warning col-sm-12" (click)="programarEntrega()" [disabled]="!regularForm.valid">Programar Entrega<i
+                        class="far fa-calendar-plus pl-2"></i></button>
 
             </div>
         </form>
@@ -57,34 +57,15 @@
     <div class="col-sm-8">
         <form [formGroup]="formFiltro">
             <div class="formulario row">
-                <div class="form-group col-sm-6">
+                <div class="form-group col-sm-12">
                     <label for="Ingreso">
                         Ayuda
                     </label>
-                    <select class="form-control" #ayuda id="ayuda" formControlName="idAyuda">
+                    <select class="form-control" #ayuda id="descripcion" formControlName="descripcion" (change)="filtrar()">
                         <option value="" selected>Seleccione Ayuda...</option>
-                        <option value="{{ayuda.id}}" *ngFor="let ayuda of ayudasCompletas">{{ayuda.descripcion}}
+                        <option value="{{ayuda.descripcion}}" *ngFor="let ayuda of ayudas">{{ayuda.descripcion}}
                         </option>
                     </select>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="Ingreso">Grupo</label>
-                    <select class="form-control" #grupo id="grupo" formControlName="idGrupo">
-                        <option value="" selected>Seleccione Grupo...</option>
-                        <option value="{{gru.id}}" *ngFor="let gru of grupos">{{gru.grado+'-'+gru.identificador+ ':'
-                            +gru.profesor.nombre}}</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-sm-4">
-                    <label for="fecha">Identificación</label>
-                    <input #documento type="text" class="form-control" id="documento"
-                        aria-describedby="documento" placeholder="documento" formControlName="documento" value="">
-                </div>
-                <div class="from-group col-sm-2 buttons">
-                    <label for="fecha">Buscar</label>
-                    <button type="submit" class="btn btn-success col-sm-12 mx-auto" (click)="filtrar()">Buscar <i
-                            class="fas fa-search float-right"></i></button>
                 </div>
             </div>
 
@@ -102,7 +83,7 @@
                         <th>Apellido</th>
                         <th>Beneficio</th>
                         <th>Grupo</th>
-                        <th colspan="2">Total: {{paginador.totalElements}}</th>
+                        <th>Total: {{paginador.totalElements}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -112,6 +93,7 @@
                         <td>{{estudiante.apellido}}</td>
                         <td>{{estudiante.ayuda}}</td>
                         <td>{{estudiante.grupo.grado+' - '+estudiante.grupo.identificador }}</td>
+                        <td class="boton" (click)="quitarEstudiante(estudiante)"><i class="fas fa-trash-alt"></i></td>
                     </tr>
                 </tbody>
             </table>
