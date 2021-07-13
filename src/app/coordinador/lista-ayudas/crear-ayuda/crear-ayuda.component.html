@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title">Crear Ayuda</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="p-3 modal-body">
+    <div class="row p-3">
+        <form [formGroup]="regularForm" class="col-sm-12">
+            <div class="formulario row col-sm-12">
+                <div class="form-group col-sm-12">
+                    <label for="descripcion">Nombre</label>
+                    <input #descripcion type="text" class="form-control" id="descripcion" name="descripcion"
+                        aria-describedby="emailHelp" placeholder="Nombre" formControlName="descripcion">
+                </div>
+                <div class="form-group col-sm-12">
+                    <label for="fechaEntrega"> Fecha proxima entrega</label>
+                    <input #ultimaEntrega type="date" class="form-control" id="fechaEntrega" name="fechaEntrega"
+                        aria-describedby="fechaEntrega" placeholder="" formControlName="fechaEntrega">
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success col-sm-4" (click)="crearAyuda()">Registrar <i
+            class="fas fa-plus-circle"></i></button>
+    <button class="btn btn-danger col-sm-4" (click)="close()">Cancelar <i class="fas fa-times"></i></button>
+</div>

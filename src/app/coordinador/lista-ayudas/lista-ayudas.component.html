@@ -1,0 +1,116 @@
+<div class="row mx-auto">
+    <div class="col-sm-3 mx-auto">
+        <h4>Gestion de Ayudas</h4>
+        <div class="col-sm-12">
+            <a class="btn btn-success col-sm-12" (click)="crearAyuda()">Crear Ayuda <i
+                    class="fas fa-cart-plus pl-4"></i></a>
+        </div>
+        <hr>
+        <form [formGroup]="regularForm">
+            <h4>Programar Entrega</h4>
+            <div class="col-sm-12 pt-2">
+                <label for="fechaEntrega">Ayuda</label>
+                <select class="form-control col-sm-12" #descripcion id="descripcion" formControlName="descripcion">
+                    <option value="" selected>Seleccione Ayuda...</option>
+                    <option value="{{ayuda.descripcion}}" *ngFor="let ayuda of ayudas">{{ayuda.descripcion}}</option>
+                </select>
+
+            </div>
+            <div class="col-sm-12 pt-2">
+                <label for="fechaEntrega">Proxima Entrega</label>
+                <input #entregadoDesde type="date" class="form-control" id="fechaEntrega" name="fechaEntrega"
+                    aria-describedby="fechaEntrega" placeholder="" formControlName="fechaEntrega">
+            </div>
+            <div class="col-sm-12 pt-2">
+
+                <button class="btn btn-warning col-sm-12" (click)="programarEntrega()"
+                    [disabled]="!regularForm.valid">Programar Entrega<i class="far fa-calendar-plus pl-2"></i></button>
+
+            </div>
+        </form>
+        <hr>
+        <div class="card-body text-secondary col-sm-12">
+            <h5 class="card-title">Listado de ayudas</h5>
+            <div *ngIf="ayudas?.length<=0" class="alert alert-info nohay">
+                No hay registros en la base de datos
+            </div>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-bordered table-striped mb-0" *ngIf="ayudas?.length>0">
+                    <thead>
+                        <tr>
+                            <th>Nombre </th>
+                            <th>Cant. Beneficiarios</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ayuda of ayudas">
+                            <th>{{ayuda.descripcion}}</th>
+                            <td>{{ayuda.count}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="vl"></div>
+    <div class="col-sm-8">
+        <form [formGroup]="formFiltro">
+            <div class="formulario row" id="estudiantes">
+                <div class="form-group col-sm-10">
+                    <label for="Ingreso">
+                        Ayuda
+                    </label>
+                    <select class="form-control" #ayuda id="descripcion" formControlName="descripcion"
+                        (change)="filtrar()">
+                        <option value="" selected>Seleccione Ayuda...</option>
+                        <option value="{{ayuda.id}}" *ngFor="let ayuda of ayudasCompletas">{{ayuda.descripcion}} - {{ayuda.fechaEntrega}}
+                        </option>
+                    </select>
+                </div>
+                <div class="d-flex align-items-center justify-content-end col-sm-2"
+                    *ngIf="formFiltro.value.descripcion && formFiltro.value.descripcion!==''">
+                    <a class="btn btn-success col-sm-5" (click)="agregarAyudaEstudiante()"><i class="fas fa-user-plus"></i></a>
+                    <a class="btn btn-danger col-sm-5" (click)="crearAyuda()" *ngIf="estudiantes?.length>0"><i class="fas fa-user-minus"></i></a>
+                </div>
+
+            </div>
+
+        </form>
+        <hr>
+        <div class="card-body text-secondary col-sm-12">
+            <div *ngIf="estudiantes?.length<=0" class="alert alert-info nohay">
+                No hay registros en la base de datos
+            </div>
+            <table class="table table-bordered table-striped" *ngIf="estudiantes?.length>0">
+                <thead>
+                    <tr>
+                        <th>Documento</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Beneficio</th>
+                        <th>Fecha entrega</th>
+                        <th>Grupo</th>
+                        <th>Total: {{paginador.totalElements}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let estudiante of estudiantes">
+                        <td>{{estudiante.documento}}</td>
+                        <td>{{estudiante.nombre}}</td>
+                        <td>{{estudiante.apellido}}</td>
+                        <td>{{estudiante.ayuda}}</td>
+                        <td>{{estudiante.fecha}}</td>
+                        <td>{{estudiante.grupo.grado+' - '+estudiante.grupo.identificador }}</td>
+                        <td class="boton" (click)="quitarEstudiante(estudiante)"><i class="fas fa-trash-alt"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="float-right">
+                <paginator-nav *ngIf="paginador" [paginador]="paginador" [lista]="'/coordinador/ayudas/page/'">
+                </paginator-nav>
+            </div>
+
+        </div>
+    </div>
+</div>

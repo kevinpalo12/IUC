@@ -1,0 +1,53 @@
+<div id="element-to-print" *ngIf="estudiante">
+    <div #header id="header" class="mb-3 row">
+        <div class="col-sm-12 row">
+            <img src="../../../../assets/logoAlcaldia.png" alt="logoAlcaldia" class="alcaldia col-sm-3">
+            <div class="col-sm-9 text-center">
+                <h5>ALCALDIA DE MANIZALES <br> SECRETARIA DE EDICACIÓN<br>UNIDAD DE CALIDAD<br>PROGRAMA DE INCLUSIÓN
+                    EDUCATIVA</h5>
+                <h6 class="mt-1">ATENCIÓN Y SEGUIMIENTO ESTUDIANTES</h6>
+            </div>
+        </div>
+        <div class="col-sm-12 row mt-3">
+            <p class="col-sm-3"><b>Nro. </b>{{estudiante.id}}</p>
+            <p class="col-sm-7"><b>Fecha Expedición:
+                </b>{{estudiante.solicitud.getDate()+'/'+monthNames[estudiante.solicitud.getMonth()]+'/'+estudiante.solicitud.getFullYear()}}
+            </p>
+
+            <p class="col-sm-12"><b>Nombres y Apellidos: </b>{{estudiante.nombre+' '+estudiante.apellido}}</p>
+            <p class="col-sm-5"><b>Fecha Nacimiento:
+                </b>{{estudiante.nacimiento.getDate()+'/'+monthNames[estudiante.nacimiento.getMonth()]+'/'+estudiante.nacimiento.getFullYear()}}
+            </p>
+            <p class="col-sm-2"><b>Edad: </b>{{estudiante.edad}}</p>
+            <p class="col-sm-3"><b>Escolaridad: </b>{{estudiante.grupo.grado+'°'}}</p>
+            <p class="col-sm-7"><b>Institucion: </b>{{'Instituto Universitario de Caldas'}}</p>
+            <p class="col-sm-2"><b>Eps: </b>{{estudiante.eps}}</p>
+            <p class="col-sm-7"><b>Situacion de Desplazamiento: </b>{{estudiante.desplazado}}</p> 
+            <p class="col-sm-2"><b>Estrato: </b>{{estudiante.acudiente.estrato}}</p>
+            <p class="col-sm-7"><b>Direccion de Residencia: </b>{{estudiante.acudiente.direccion}}</p>
+            <p class="col-sm-4"><b>Barrio: </b>{{estudiante.acudiente.barrio}}</p>
+            
+            <p class="col-sm-4"><b>Teléfono: </b>{{estudiante.acudiente.telefono}}</p>
+            <p class="col-sm-4"><b>Otro teléfono: </b>{{estudiante.acudiente.telefonoAlterno}}</p>
+            <p class="col-sm-4"><b>Otro teléfono: </b>{{estudiante.acudiente.telefonoAlterno}}</p>
+            <p class="col-sm-7"><b>Acudiente: </b>{{estudiante.acudiente.nombre+' '+estudiante.acudiente.apellido}}</p>
+            <p class="col-sm-5"><b>Parentesco: </b>{{estudiante.parentesco}}</p>
+        </div>
+
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="date" scope="col">Fecha</th>
+                <th class="anotation" scope="col">Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let registro of registros">
+                <td>{{registro.createAt}}</td>
+                <td>{{registro.anotacion}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

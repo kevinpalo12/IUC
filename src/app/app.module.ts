@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -11,10 +11,25 @@ import { LoginComponent } from './login/login.component';
 import { CoordinadorComponent } from './coordinador/coordinador.component';
 import { ProfesorComponent } from './profesor/profesor.component';
 import { AcudienteComponent } from './acudiente/acudiente.component';
-import { HojaVidaComponent } from './Coordinador/hoja-vida/hoja-vida.component';
-import { DashBoardComponent } from './Coordinador/dash-board/dash-board.component';
-import { NavBarComponent } from './Coordinador/nav-bar/nav-bar.component';
-
+import { HojaVidaComponent } from './coordinador/hoja-vida/hoja-vida.component';
+import { DashBoardComponent } from './coordinador/dash-board/dash-board.component';
+import { NavBarComponent } from './coordinador/nav-bar/nav-bar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AutenticarService } from './services/autenticar.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ListaEstudiantesComponent } from './coordinador/lista-estudiantes/lista-estudiantes.component';
+import { ListaAyudasComponent } from './coordinador/lista-ayudas/lista-ayudas.component';
+import { GruposComponent } from './coordinador/grupos/grupos.component';
+import { ListaProfesoresComponent } from './coordinador/lista-profesores/lista-profesores.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaginatorComponent } from './common/paginator/paginator.component';
+import { CrearEstudianteComponent } from './coordinador/lista-estudiantes/crear-estudiante/crear-estudiante.component';
+import { EditarEstudianteComponent } from './coordinador/lista-estudiantes/editar-estudiante/editar-estudiante.component';
+import { CrearAyudaComponent } from './coordinador/lista-ayudas/crear-ayuda/crear-ayuda.component';
+import { CrearRegistroPsicologicoComponent } from './coordinador/hoja-vida/crear-registro-psicologico/crear-registro-psicologico.component';
+import { PdfInformePsicologicoComponent } from './coordinador/hoja-vida/pdf-informe-psicologico/pdf-informe-psicologico.component';
+import { CompleteEstudentInfoComponent } from './coordinador/hoja-vida/complete-estudent-info/complete-estudent-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,17 +39,31 @@ import { NavBarComponent } from './Coordinador/nav-bar/nav-bar.component';
     AcudienteComponent,
     HojaVidaComponent,
     DashBoardComponent,
-    NavBarComponent
+    NavBarComponent,
+    ListaEstudiantesComponent,
+    ListaAyudasComponent,
+    GruposComponent,
+    ListaProfesoresComponent,
+    PaginatorComponent,
+    CrearEstudianteComponent,
+    EditarEstudianteComponent,
+    CrearAyudaComponent,
+    CrearRegistroPsicologicoComponent,
+    PdfInformePsicologicoComponent,
+    CompleteEstudentInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    FormsModule,
+    NgbModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    HttpClientModule,
+    FontAwesomeModule
+
   ],
-  providers: [],
+  providers: [AutenticarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

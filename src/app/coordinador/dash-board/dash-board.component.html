@@ -1,1 +1,37 @@
-<p>dash-board works!</p>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10 row">
+        <div class="col-sm-6 row" (click)="navegacion('estudiante')">
+            <button class="grandes btn btn-success col-sm-6 ">Estudiantes</button>
+            <div class="col-sm-6 row texto">
+                <h1 class=" col-sm-12">{{estudiantes}} <br>
+                    Estudiantes
+                </h1>
+            </div>
+        </div>
+        <div class="col-sm-6 row" (click)="navegacion('ayudas')">
+            <button class="grandes btn btn-success col-sm-6 ">Ayudas </button>
+            <div class="col-sm-6 row texto">
+                <h1 class=" col-sm-12">{{ayudas}} <br>
+                    Ayudas
+                </h1>
+            </div>
+        </div>
+        <div class="col-sm-6 row" (click)="navegacion('profesores')">
+            <button class="grandes btn btn-success col-sm-6 ">Profesores</button>
+            <div class="col-sm-6 row texto">
+                <h1 class=" col-sm-12">{{profesores}} <br>
+                    Profesores
+                </h1>
+            </div>
+        </div>
+        <div class="col-sm-6 row" (click)="navegacion('grupos')">
+            <button class="grandes btn btn-success col-sm-6 ">Grupos</button>
+            <div class="col-sm-6 row texto">
+                <h1 class=" col-sm-12">{{grupos}} <br>
+                    Grupos
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+.vl {
+    border-left: 1px solid black;
+    height: 70vh;
+}
+table {
+    margin-top: 3vh;
+    background: white;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 30vh;
+    overflow: auto;
+}
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+td.boton:hover {
+    cursor: pointer;
+    .fa-pen-square {
+        color: green;
+    }
+    .fa-trash-alt {
+        color: darkred;
+    }
+
+    .fa-eye {
+        color: green;
+    }
+}
+td.boton {
+    cursor: pointer;
+    .fa-pen-square {
+        color: green;
+    }
+    .fa-trash-alt {
+        color: darkred;
+    }
+
+    .fa-eye {
+        color: green;
+    }
+}
+
+#estudiantes {
+    a {
+        margin-right: 10%;
+    }
+}

@@ -1,0 +1,130 @@
+<div class="modal-header">
+    <h4 class="modal-title">Editar Estudiante</h4>
+    
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="p-3 modal-body">
+    <div class="row">
+     
+        <div class="row p-3">        
+            <form>
+                <div class="col-sm-12">
+                    <h3>Datos Basicos</h3>
+                </div>
+                <div class="formulario row col-sm-12 p-3">
+                    <div class="form-group col-sm-6">
+                        <label for="documento">Documento</label>
+                        <input #identificacion type="text" class="form-control" id="identificacion" name="documento"
+                            aria-describedby="emailHelp" placeholder="Identificacion" [(ngModel)]="estudiante.documento">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="nombre">Nombre</label>
+                        <input #nombre type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp"
+                            placeholder="Nombre" [(ngModel)]="estudiante.nombre">
+    
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="apellido">Apellido</label>
+                        <input #apellido type="text" class="form-control" id="apellido" name="apellido" aria-describedby="emailHelp" 
+                            placeholder="Apellido" [(ngModel)]="estudiante.apellido">    
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        
+                        <label for="grupo">Grupo</label>
+                        <select class="form-control" #grupo id="grupo" name="grupo" [(ngModel)]="estudiante.grupo.id">
+                            <option value="{{gru.id}}" *ngFor="let gru of grupos">{{gru.grado+'-'+gru.identificador+ ' : '+gru.profesor.nombre}}</option>
+                        </select>        
+                    </div>       
+                    <div class="form-group col-sm-6">
+                        <label for="nacimiento"> Fecha nacimiento</label>
+                        <input #nacimiento type="date" class="form-control" id="nacimiento"  name="nacimiento" aria-describedby="emailHelp"
+                            placeholder="" [(ngModel)]="humanDate">    
+                    </div>    
+                    <div class="form-group col-md-6">
+                        <label for="sol_identi">No. Identificación</label>
+                        <div class="input-group">
+                          <input type="text" id="idAcudiente" class="form-control"
+                            placeholder="No. Identificación" name="idAcudiente" [(ngModel)]="estudiante.acudiente.cedula"
+                            (keyup.enter)="consultarAcudiente()">
+                          <div class="input-group-append ">
+                              <i class="btn btn-outline-success left-15 mr-1">
+                                <i (click)="consultarAcudiente()" class="fas fa-search">
+                                </i>
+                              </i>
+                  
+                          </div>
+                        </div>
+                      </div>  
+                </div>
+              
+                <div class="col-sm-12">
+                    <hr>
+                    <h3>Acudiente</h3>
+                </div>
+             
+                </form>
+                <form [formGroup]="regularForm">
+                  
+                <div class="formulario row col-sm-12 p-3" [formGroup]="regularForm">
+                   
+                    <div class="form-group col-sm-6">
+                        <label for="nombreAcudiente">Nombre</label>
+                        <input #nombreAcudiente type="text" class="form-control" id="nombreAcudiente" name="nombreAcudiente" aria-describedby="emailHelp"
+                            placeholder="Nombre Acudiente" formControlName="nombreAcudiente" [(ngModel)]="estudiante.acudiente.nombre">    
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="apellidoAcudiente">Apellido</label>
+                        <input #apellidoAcudiente type="text" class="form-control" id="apellidoAcudiente" name="apellidoAcudiente" aria-describedby="emailHelp"
+                            placeholder="Apellido acudiente" formControlName="apellidoAcudiente" [(ngModel)]="estudiante.acudiente.apellido">    
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="telefono">Teléfono</label>
+                        <input #telefono type="text" class="form-control" id="telefono" name="telefono" aria-describedby="emailHelp"
+                            placeholder="Telefono" [(ngModel)]="estudiante.acudiente.telefono" formControlName="telefono">    
+                    </div>   
+                    <div class="form-group col-sm-6">
+                        <label for="telefonoAlterno">Teléfono Alterno</label>
+                        <input #telefonoAlterno type="text" class="form-control" id="telefonoAlterno" name="telefonoAlterno" aria-describedby="emailHelp"
+                            placeholder="Telefono" [(ngModel)]="estudiante.acudiente.telefonoAlterno" formControlName="telefonoAlterno">    
+                    </div> 
+                    <div class="form-group col-sm-6">
+                        <label for="direccion">Dirección</label>
+                        <input #direccion type="text" class="form-control" id="direccion"  name="direccion" aria-describedby="emailHelp"
+                            placeholder="Direccion" [(ngModel)]="estudiante.acudiente.direccion" formControlName="direccion">    
+                    </div>  
+                    <div class="form-group col-sm-6">
+                        <label for="barrio">Barrio</label>
+                        <input #barrio type="text" class="form-control" id="direccion"  name="barrio" aria-describedby="emailHelp"
+                            placeholder="barrio" [(ngModel)]="estudiante.acudiente.barrio" formControlName="barrio">    
+                    </div>      
+                    <div class="form-group col-sm-6">
+                        <label for="estrato">Estrato</label>
+                        <input #direccion type="text" class="form-control" id="estrato"  name="estrato" aria-describedby="emailHelp"
+                            placeholder="Estrato" [(ngModel)]="estudiante.acudiente.estrato" formControlName="estrato">    
+                    </div> 
+                    <div class="form-group col-sm-6"  *ngIf="addAcudiente">
+                        <label for="boton">Agregar Acudiente</label>
+                        <button class="btn btn-success col-sm-12" (click)="agregarAcudiente()">Registrar Acudiente <i class="fas fa-plus-circle"></i></button>  
+                    </div> 
+                    <div class="form-group col-sm-6"  *ngIf="editAcudiente">
+                        <label for="boton">Editar Acudiente</label>
+                        <button class="btn btn-success col-sm-12" (click)="habilitarAcudiente()">Editar Acudiente <i class="fas fa-edit"></i></button>  
+                    </div> 
+                    <div class="form-group col-sm-6"  *ngIf="actualizarAcudiente">
+                        <label for="boton">Editar Acudiente</label>
+                        <button class="btn btn-success col-sm-12" (click)="editarAcudiente()">Actualizar Acudiente <i class="fas fa-edit"></i></button>  
+                    </div> 
+                </div>
+
+            </form>
+    
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success col-sm-4" (click)="actualizarEstudiante()">Actualizar <i class="fas fa-edit"></i></button>                   
+    <button class="btn btn-danger col-sm-4" (click)="close()">Cancelar <i class="fas fa-times"></i></button>
+</div>
