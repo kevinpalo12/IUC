@@ -40,6 +40,8 @@ export class EditarEstudianteComponent implements OnInit {
       'telefono': new FormControl(),
       'telefonoAlterno': new FormControl(),
       'direccion': new FormControl(),
+      'estrato': new FormControl(),
+      'barrio': new FormControl(),
     }, { updateOn: 'change' })
     this.regularForm.controls.nombreAcudiente.disable()
     this.regularForm.controls.nombreAcudiente.disable()
@@ -47,6 +49,8 @@ export class EditarEstudianteComponent implements OnInit {
     this.regularForm.controls.telefonoAlterno.disable()
     this.regularForm.controls.telefono.disable()
     this.regularForm.controls.direccion.disable()
+    this.regularForm.controls.estrato.disable()
+    this.regularForm.controls.barrio.disable()
   }
 
   close() {
@@ -61,6 +65,8 @@ export class EditarEstudianteComponent implements OnInit {
         this.regularForm.controls.telefonoAlterno.enable()
         this.regularForm.controls.telefono.enable();
         this.regularForm.controls.direccion.enable();
+        this.regularForm.controls.estrato.enable()
+        this.regularForm.controls.barrio.enable()
         swal.fire('No existe', `Se habilitará la opcion crear Acudiente`, 'warning')
         this.addAcudiente = true
         this.editAcudiente = false;
@@ -73,6 +79,8 @@ export class EditarEstudianteComponent implements OnInit {
         this.regularForm.controls.telefono.disable()
         this.regularForm.controls.direccion.disable()
         this.regularForm.controls.telefonoAlterno.disable()
+        this.regularForm.controls.estrato.disable()
+        this.regularForm.controls.barrio.disable()
         this.estudiante.acudiente = res.acudiente;
         this.addAcudiente = false;
         this.editAcudiente = true;
@@ -131,6 +139,8 @@ export class EditarEstudianteComponent implements OnInit {
     this.regularForm.controls.telefonoAlterno.enable()
     this.regularForm.controls.telefono.enable();
     this.regularForm.controls.direccion.enable();
+    this.regularForm.controls.estrato.enable()
+    this.regularForm.controls.barrio.enable()
     this.editAcudiente = false;
     this.actualizarAcudiente = true;
   }
@@ -144,6 +154,8 @@ export class EditarEstudianteComponent implements OnInit {
       this.regularForm.controls.telefono.disable()
       this.regularForm.controls.direccion.disable()
       this.regularForm.controls.telefonoAlterno.disable()
+      this.regularForm.controls.estrato.disable()
+      this.regularForm.controls.barrio.disable()
       this.addAcudiente = false;
       this.editAcudiente = true;
       this.actualizarAcudiente = false;

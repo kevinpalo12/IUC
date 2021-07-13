@@ -8,6 +8,8 @@ export class Acudiente {
     parentesco: string;
     usuario: string;
     cedula: string;
+    barrio:string;
+    estrato:string;
     constructor() {
         this.id = -1
     }

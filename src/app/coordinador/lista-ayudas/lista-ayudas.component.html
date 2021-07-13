@@ -23,8 +23,8 @@
             </div>
             <div class="col-sm-12 pt-2">
 
-                <button class="btn btn-warning col-sm-12" (click)="programarEntrega()" [disabled]="!regularForm.valid">Programar Entrega<i
-                        class="far fa-calendar-plus pl-2"></i></button>
+                <button class="btn btn-warning col-sm-12" (click)="programarEntrega()"
+                    [disabled]="!regularForm.valid">Programar Entrega<i class="far fa-calendar-plus pl-2"></i></button>
 
             </div>
         </form>
@@ -56,22 +56,29 @@
     <div class="vl"></div>
     <div class="col-sm-8">
         <form [formGroup]="formFiltro">
-            <div class="formulario row">
-                <div class="form-group col-sm-12">
+            <div class="formulario row" id="estudiantes">
+                <div class="form-group col-sm-10">
                     <label for="Ingreso">
                         Ayuda
                     </label>
-                    <select class="form-control" #ayuda id="descripcion" formControlName="descripcion" (change)="filtrar()">
+                    <select class="form-control" #ayuda id="descripcion" formControlName="descripcion"
+                        (change)="filtrar()">
                         <option value="" selected>Seleccione Ayuda...</option>
-                        <option value="{{ayuda.descripcion}}" *ngFor="let ayuda of ayudas">{{ayuda.descripcion}}
+                        <option value="{{ayuda.id}}" *ngFor="let ayuda of ayudasCompletas">{{ayuda.descripcion}} - {{ayuda.fechaEntrega}}
                         </option>
                     </select>
                 </div>
+                <div class="d-flex align-items-center justify-content-end col-sm-2"
+                    *ngIf="formFiltro.value.descripcion && formFiltro.value.descripcion!==''">
+                    <a class="btn btn-success col-sm-5" (click)="agregarAyudaEstudiante()"><i class="fas fa-user-plus"></i></a>
+                    <a class="btn btn-danger col-sm-5" (click)="crearAyuda()" *ngIf="estudiantes?.length>0"><i class="fas fa-user-minus"></i></a>
+                </div>
+
             </div>
 
         </form>
         <hr>
-        <div class="card-body text-secondary col-sm-12">       
+        <div class="card-body text-secondary col-sm-12">
             <div *ngIf="estudiantes?.length<=0" class="alert alert-info nohay">
                 No hay registros en la base de datos
             </div>
@@ -82,6 +89,7 @@
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Beneficio</th>
+                        <th>Fecha entrega</th>
                         <th>Grupo</th>
                         <th>Total: {{paginador.totalElements}}</th>
                     </tr>
@@ -92,15 +100,17 @@
                         <td>{{estudiante.nombre}}</td>
                         <td>{{estudiante.apellido}}</td>
                         <td>{{estudiante.ayuda}}</td>
+                        <td>{{estudiante.fecha}}</td>
                         <td>{{estudiante.grupo.grado+' - '+estudiante.grupo.identificador }}</td>
                         <td class="boton" (click)="quitarEstudiante(estudiante)"><i class="fas fa-trash-alt"></i></td>
                     </tr>
                 </tbody>
             </table>
             <div class="float-right">
-                <paginator-nav *ngIf="paginador" [paginador]="paginador" [lista]="'/coordinador/ayudas/page/'"></paginator-nav>
+                <paginator-nav *ngIf="paginador" [paginador]="paginador" [lista]="'/coordinador/ayudas/page/'">
+                </paginator-nav>
             </div>
-           
+
         </div>
     </div>
 </div>

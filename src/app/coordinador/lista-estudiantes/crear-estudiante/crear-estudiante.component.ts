@@ -22,6 +22,7 @@ export class CrearEstudianteComponent implements OnInit {
   modelo: { estudiante: Estudiante, acudiente: Acudiente }
   regularForm: FormGroup;
   estudiante: Estudiante;
+  otroParentesco = ''
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -49,6 +50,8 @@ export class CrearEstudianteComponent implements OnInit {
       'telefono': new FormControl(),
       'telefonoAlterno': new FormControl(),
       'direccion': new FormControl(),
+      'estrato': new FormControl(),
+      'barrio': new FormControl(),
     }, { updateOn: 'change' })
     this.regularForm.controls.nombreAcudiente.disable()
     this.regularForm.controls.nombreAcudiente.disable()
@@ -56,6 +59,8 @@ export class CrearEstudianteComponent implements OnInit {
     this.regularForm.controls.telefonoAlterno.disable()
     this.regularForm.controls.telefono.disable()
     this.regularForm.controls.direccion.disable()
+    this.regularForm.controls.estrato.disable()
+    this.regularForm.controls.barrio.disable()
   }
 
   agregarAcudiente() {
@@ -76,6 +81,9 @@ export class CrearEstudianteComponent implements OnInit {
   }
 
   agregarEstudiante() {
+    if(this.modelo.estudiante.parentesco==='Otro'){
+      this.modelo.estudiante.parentesco=this.otroParentesco;
+    }
     if (this.modelo.estudiante.documento === "") {
       swal.fire('Falta Documento', `Por favor diligencia el documento del estudiante`, 'error');
       if (this.modelo.estudiante.acudiente.id === -1) {
@@ -95,7 +103,7 @@ export class CrearEstudianteComponent implements OnInit {
     );
   }
 
-  
+
 
 
   close() {
@@ -111,6 +119,9 @@ export class CrearEstudianteComponent implements OnInit {
         this.regularForm.controls.telefonoAlterno.enable()
         this.regularForm.controls.telefono.enable();
         this.regularForm.controls.direccion.enable();
+
+        this.regularForm.controls.estrato.enable()
+        this.regularForm.controls.barrio.enable()
         swal.fire('No existe', `Se habilitará la opcion crear Acudiente`, 'warning')
         this.editAcudiente = true
       }
@@ -121,6 +132,8 @@ export class CrearEstudianteComponent implements OnInit {
         this.regularForm.controls.telefono.disable()
         this.regularForm.controls.direccion.disable()
         this.regularForm.controls.telefonoAlterno.disable()
+        this.regularForm.controls.estrato.disable()
+        this.regularForm.controls.barrio.disable()
         this.modelo.acudiente = res.acudiente;
         this.editAcudiente = false;
         this.modelo.estudiante.acudiente.id = res.acudiente.id;

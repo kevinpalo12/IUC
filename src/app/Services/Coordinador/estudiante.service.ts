@@ -100,5 +100,13 @@ export class EstudianteService {
     return this.http.put(this.urlEndPoint+'estudiante/'+estudiante.id,estudiante,{headers:this.httpHeaders})
   }
 
+  addAyuda(estudiante:number, ayuda:number):Observable<any>{
+    return this.http.put(this.urlEndPoint+`estudiante/addAyuda/${estudiante}/${ayuda}`,{headers:this.httpHeaders})
+  }
+
+
+  getEstudiante(id:number):Observable<any>{
+    return this.http.get(this.urlEndPoint + '/estudiante/'+id);
+  }
   
 }

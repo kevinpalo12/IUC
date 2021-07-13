@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4 class="modal-title">Completar/Validar información</h4><br>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="p-3 modal-body">
+    <p>Para completar la descarga por favor verifique o totalice el siguiente formulario:</p>
+    <div class="row">
+        <form class="col-sm-12 row" [formGroup]="regularForm">
+            <div class="form-group col-sm-6">
+                <label for="diagnostico">Eps</label>
+                <input #eps type="text" class="form-control" id="eps" name="eps"
+                    aria-describedby="emailHelp" placeholder="Eps" formControlName="eps">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="diagnostico">Barrio</label>
+                <input #barrio type="text" class="form-control" id="barrio" name="barrio"
+                    aria-describedby="emailHelp" placeholder="Barrio" formControlName="barrio">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="diagnostico">Estrato</label>
+                <input #estrato type="number" class="form-control" id="estrato" name="estrato"
+                    aria-describedby="emailHelp" placeholder="Estrato" formControlName="estrato">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="diagnostico">Desplazado</label>
+                <select class="form-control" #grupo id="desplazado" name="desplazado" formControlName="desplazado">
+                    <option value="Si">Si</option>
+                    <option value="No">No</option>
+                </select>        
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-success col-sm-3" (click)="complete()">Descargar PDF <i
+            class="fas fa-print float-right pr-1 pt-1"></i></button>
+    <button class="btn btn-danger col-sm-2" (click)="close()">Cancelar <i class="fas fa-times float-right pr-1 pt-1"></i></button>
+</div>

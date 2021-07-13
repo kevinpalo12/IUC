@@ -8,12 +8,15 @@ export class Estudiante {
   email: string;
   createAt: string;
   documento: string;
-  estado:string;
-  grupo:Grupo;
-  acudiente:Acudiente;
-  edad:number;
-  nacimiento:any;
-
-  constructor(){
+  estado: string;
+  grupo: Grupo;
+  acudiente: Acudiente;
+  edad: number;
+  nacimiento: any;
+  parentesco: string;
+  desplazado: string;
+  foto;
+  eps: string;
+  constructor() {
   }
 }

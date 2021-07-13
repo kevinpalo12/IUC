@@ -6,6 +6,7 @@ import { GrupoService } from 'src/app/services/Coordinador/grupo.service';
 import { CrearAyudaComponent } from './crear-ayuda/crear-ayuda.component';
 import swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { EstudianteService } from 'src/app/services/Coordinador/estudiante.service';
 @Component({
   selector: 'app-lista-ayudas',
   templateUrl: './lista-ayudas.component.html',
@@ -24,6 +25,7 @@ export class ListaAyudasComponent implements OnInit {
   constructor(
     private grupoService: GrupoService,
     private ayudaService: AyudaService,
+    private estudianteService: EstudianteService,
     private modalService: NgbModal,
     private activateRoute: ActivatedRoute
   ) { }
@@ -46,7 +48,6 @@ export class ListaAyudasComponent implements OnInit {
   }
 
   filtrar() {
-
     this.activateRoute.paramMap.subscribe(params => {
       let page: number = +params.get('page') || 0;
       if (!page) {
@@ -114,6 +115,7 @@ export class ListaAyudasComponent implements OnInit {
     }
     modalRef.result.then((data) => {
       this.listarAyudasCantidad();
+      this.listarAyudas();
     })
   }
 
@@ -121,5 +123,8 @@ export class ListaAyudasComponent implements OnInit {
     this.ayudaService.getAyudas().subscribe(res => {
       this.ayudasCompletas = res;
     })
+  }
+
+  agregarAyudaEstudiante(){
   }
 }

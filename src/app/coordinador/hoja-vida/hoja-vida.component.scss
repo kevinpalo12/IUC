@@ -1,0 +1,55 @@
+#tittle{
+    .fa-user-edit{
+        font-size: 75%;
+        color: green;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+ 
+}
+#basic-info {
+    p {
+        margin-top: 0%;
+        margin-bottom: 0%;
+        .fa-eye {
+            color: #444444;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+#image-profile {
+    img {
+        height: 6rem;
+        width: auto;
+    }
+}
+.vl {
+    border-left: 1px solid gray;
+    height: 6rem;
+}
+.excusa {
+    .row {
+        .fa-check, .fa-eye{
+            color: green;
+        }
+        .fa-times, .fa-eye-slash{
+            color: red;
+        }
+        button{
+            background-color: royalblue;
+        }
+    }
+}
+#extra-clase{
+   table{
+       width: 100%;
+       background-color: white;
+   }
+}
+
+#pdfs{
+    display: none;
+}
