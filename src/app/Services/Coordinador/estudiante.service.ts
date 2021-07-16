@@ -108,5 +108,12 @@ export class EstudianteService {
   getEstudiante(id:number):Observable<any>{
     return this.http.get(this.urlEndPoint + '/estudiante/'+id);
   }
+
+  getActividadesEstudiante(id:number):Observable<any>{
+    return this.http.get(this.urlEndPoint + '/estudiante/actividades/'+id);
+  }
   
+  getUltimaExcusa(id:number):Observable<any>{
+    return this.http.get(this.urlEndPoint+'/estudiante/inasistencia/ultima/'+id);
+  }
 }

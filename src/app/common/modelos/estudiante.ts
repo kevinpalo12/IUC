@@ -17,6 +17,11 @@ export class Estudiante {
   desplazado: string;
   foto;
   eps: string;
+  ayudas: any[];
+  actividades: any[];
+  actividadesInac: any[];
+  ultimaInasistencia:any;
   constructor() {
   }
+
 }

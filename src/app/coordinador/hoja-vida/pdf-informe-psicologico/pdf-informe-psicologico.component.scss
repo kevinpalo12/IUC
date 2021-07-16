@@ -7,19 +7,27 @@ tr {
         width: 70%;
     }
 }
-#header{
-   h5{
-       font-size: 16px;
-   }
-   h6{
-       font-size: 14px;
-   }
-    .alcaldia{
+#header {
+    h5 {
+        font-size: 16px;
+    }
+    h6 {
+        font-size: 14px;
+    }
+    .alcaldia {
         height: 100px;
     }
-    p{
+    p {
         font-size: 13px;
         margin: 0;
     }
 }
 
+#element-to-print-vida {
+    .header {
+        #image-profile{
+height: 50px;
+        }
+       
+    }
+}

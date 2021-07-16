@@ -5,8 +5,8 @@
     </div>
     <div class="col-sm-8 ">
 
-        <button type="button" class="btn btn-info col-sm-3 ml-2 mr-2 float-right">Hoja de Vida <i
-                class="fas fa-file-download float-right mt-1"></i></button>
+        <button type="button" class="btn btn-info col-sm-3 ml-2 mr-2 float-right" (click)="descargarHojaVida()">Hoja de
+            Vida <i class="fas fa-file-download float-right mt-1"></i></button>
         <button type="button" class="btn btn-info col-sm-3 ml-2 mr-2 float-right"
             (click)="descargarInformeRegistroPsicologico()">Informe Psicologia <i
                 class="fas fa-file-download float-right mt-1"></i></button>
@@ -33,20 +33,25 @@
     <div class="vl"></div>
     <div class="col-sm-7 excusa">
         <h5>Última Inacistencia</h5>
-        <div class="row">
+        <div class="row" *ngIf="estudiante.ultimaInasistencia.fecha!==null">
             <div class="col-sm-3">
-                <p><b>Fecha:</b> <br> Alguna Fecha</p>
+                <p><b>Fecha:</b> <br>{{estudiante.ultimaInasistencia.fecha}}</p>
             </div>
             <div class="col-sm-3">
-                <p><b>Tiene Excusa:</b> <br><i class="fas fa-check" *ngIf='false'></i> <i class="fas fa-times"
-                        *ngIf="true"></i></p>
+                <p><b>Tiene Excusa:</b> <br><i class="fas fa-check" *ngIf='estudiante.ultimaInasistencia.excusa'></i> <i
+                        class="fas fa-times" *ngIf="!estudiante.ultimaInasistencia.excusa"></i></p>
             </div>
             <div class="col-sm-3">
-                <p><b>Ver Excusa:</b> <br><i class="fas fa-eye" *ngIf='false'></i> <i class="fas fa-eye-slash"
-                        *ngIf="true"></i></p>
+                <p><b>Ver Excusa:</b> <br><i class="fas fa-eye" *ngIf='estudiante.ultimaInasistencia.excusa'></i> <i
+                        class="fas fa-eye-slash" *ngIf="!estudiante.ultimaInasistencia.excusa"></i></p>
             </div>
             <div class="col-sm-3"><button type="button" class="btn btn-info col-sm-12 ml-2 mr-2 float-right">Ver Todo <i
                         class="fas fa-calendar-day float-right mt-1"></i></button></div>
+        </div>
+        <div class="row" *ngIf="estudiante.ultimaInasistencia.fecha===null">
+            <div class="col-sm-12">
+                <p>El estudiante no faltado hasta la fecha</p>
+            </div>
         </div>
 
     </div>
@@ -55,9 +60,12 @@
 <hr class="ml-4 mr-4">
 <div class="row ml-4 mr-3" id="extra-clase" *ngIf="estudiante">
     <div class="row col-sm-12">
-        <h5 class="col-sm-10">Actividades Extraclase</h5>
-        <button type="button" class="btn btn-info col-sm-1 ml-4 mb-1 float-right">Ver Todo <i
+        <h5 class="col-sm-9">Actividades Extraclase</h5>
+        <button type="button" class="btn btn-success col-sm-1 ml-4 mb-1 float-right">Agregar <i
+            class="fas fa-plus float-right mt-1"></i></button>
+        <button type="button" class="btn btn-info col-sm-1 ml-1 mb-1 float-right">Ver Todo <i
                 class="fas fa-hiking float-right mt-1"></i></button>
+     
     </div>
 
     <div class="row col-sm-12">
@@ -70,15 +78,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Alguna Actividad</th>
-                    <td>Alguna descripción</td>
-                    <td>Otra Fecha</td>
-                </tr>
-                <tr>
-                    <th scope="row">Alguna Actividad</th>
-                    <td>Alguna descripción</td>
-                    <td>Otra Fecha</td>
+                <tr *ngFor="let actividad of estudiante.actividades">
+                    <th scope="row">{{actividad.nombre}}</th>
+                    <td>{{actividad.descripcion}}</td>
+                    <td>{{actividad.fecha_inicio}}</td>
                 </tr>
             </tbody>
         </table>
