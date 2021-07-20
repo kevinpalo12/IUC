@@ -20,7 +20,14 @@ export class Estudiante {
   ayudas: any[];
   actividades: any[];
   actividadesInac: any[];
-  ultimaInasistencia:any;
+  ultimaInasistencia:ultimaInasistencia;
+  constructor() {
+  }
+
+}
+export class ultimaInasistencia{
+  fecha:any;
+  excusa:any;
   constructor() {
   }
 

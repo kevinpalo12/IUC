@@ -27,11 +27,11 @@ export const routeList=[
             component: ListaEstudiantesComponent,
           },
           {
-            path: 'profesores',
+            path: 'profesores/page/:page',
             component: ListaProfesoresComponent,
           },
           {
-            path: 'grupos',
+            path: 'grupos/page/:page',
             component: GruposComponent,
           },
           {

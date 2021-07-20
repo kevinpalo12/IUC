@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">Agregar Profesor</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="p-3 modal-body">
+    <div class="row">
+
+        <div class="row p-3">
+            <form [formGroup]="regularForm">
+                <div class="formulario row col-sm-12 p-3">
+                    <div class="form-group col-sm-12">
+                        <label for="nacimiento">Nombre completo</label>
+                        <input #nombre type="text" class="form-control" id="nombre" name="nombre"
+                            aria-describedby="emailHelp" placeholder="Nombre Completo" formControlName="nombre">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="nacimiento">Teléfono</label>
+                        <input #telefono type="number" class="form-control" id="telefono" name="telefono"
+                            aria-describedby="emailHelp" placeholder="" formControlName="telefono">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="cual">Correo </label>
+                        <input #correo type="email" class="form-control" id="correo" name="correo"
+                            aria-describedby="emailHelp" placeholder="Correo" formControlName="correo">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success col-sm-4" (click)="crearProfesor()">Crear <i
+            class="fas fa-edit"></i></button>
+    <button class="btn btn-danger col-sm-4" (click)="close()">Cancelar <i class="fas fa-times"></i></button>
+</div>

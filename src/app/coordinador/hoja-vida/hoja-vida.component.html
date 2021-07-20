@@ -33,22 +33,22 @@
     <div class="vl"></div>
     <div class="col-sm-7 excusa">
         <h5>Última Inacistencia</h5>
-        <div class="row" *ngIf="estudiante.ultimaInasistencia.fecha!==null">
+        <div class="row" *ngIf="ultimaInasistencia.fecha">
             <div class="col-sm-3">
-                <p><b>Fecha:</b> <br>{{estudiante.ultimaInasistencia.fecha}}</p>
+                <p><b>Fecha:</b> <br>{{ultimaInasistencia.fecha}}</p>
             </div>
             <div class="col-sm-3">
-                <p><b>Tiene Excusa:</b> <br><i class="fas fa-check" *ngIf='estudiante.ultimaInasistencia.excusa'></i> <i
-                        class="fas fa-times" *ngIf="!estudiante.ultimaInasistencia.excusa"></i></p>
+                <p><b>Tiene Excusa:</b> <br><i class="fas fa-check" *ngIf='ultimaInasistencia.excusa'></i> <i
+                        class="fas fa-times" *ngIf="!ultimaInasistencia.excusa"></i></p>
             </div>
             <div class="col-sm-3">
-                <p><b>Ver Excusa:</b> <br><i class="fas fa-eye" *ngIf='estudiante.ultimaInasistencia.excusa'></i> <i
-                        class="fas fa-eye-slash" *ngIf="!estudiante.ultimaInasistencia.excusa"></i></p>
+                <p><b>Ver Excusa:</b> <br><i class="fas fa-eye" *ngIf='ultimaInasistencia.excusa'></i> <i
+                        class="fas fa-eye-slash" *ngIf="!ultimaInasistencia.excusa"></i></p>
             </div>
             <div class="col-sm-3"><button type="button" class="btn btn-info col-sm-12 ml-2 mr-2 float-right">Ver Todo <i
                         class="fas fa-calendar-day float-right mt-1"></i></button></div>
         </div>
-        <div class="row" *ngIf="estudiante.ultimaInasistencia.fecha===null">
+        <div class="row" *ngIf="!ultimaInasistencia.fecha">
             <div class="col-sm-12">
                 <p>El estudiante no faltado hasta la fecha</p>
             </div>
@@ -106,10 +106,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Alguna Actividad</th>
-                    <td>Alguna descripción</td>
-                    <td>Otra Fecha</td>
+                <tr *ngFor="let ayuda of resumenAyudas">
+                    <th scope="row">{{ayuda.descripcion}}</th>
+                    <td>{{ayuda.count}}</td>
+                    <td>{{ayuda.min}}</td>
                 </tr>
 
             </tbody>

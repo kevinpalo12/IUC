@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Estudiante } from 'src/app/common/modelos/estudiante';
+import { Estudiante, ultimaInasistencia } from 'src/app/common/modelos/estudiante';
 import { Grupo } from 'src/app/common/modelos/grupo';
+import { AyudaService } from 'src/app/services/Coordinador/ayuda.service';
 import { EstudianteService } from 'src/app/services/Coordinador/estudiante.service';
 import { GrupoService } from 'src/app/services/Coordinador/grupo.service';
 import Swal from 'sweetalert2';
@@ -22,11 +23,14 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
   estudiante: Estudiante;
   grupos: Grupo[];
   @ViewChild(PdfInformePsicologicoComponent, { static: false }) generadorPDF: PdfInformePsicologicoComponent;
+  resumenAyudas: any[];
+  ultimaInasistencia:any = new ultimaInasistencia();;
 
   constructor(
     private route: ActivatedRoute,
     private estudianteService: EstudianteService,
     private grupoService: GrupoService,
+    private ayudaService: AyudaService,
     private modalService: NgbModal) {
   }
 
@@ -39,6 +43,7 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
           this.estudiante.nacimiento = new Date(res.nacimiento).toLocaleDateString()
           this.listarActividades();
           this.ultimaExcusa();
+          this.getResumenAyudas();
         })
     });
   }
@@ -49,11 +54,10 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
 
   ultimaExcusa() {
     this.estudianteService.getUltimaExcusa(this.estudiante.id).subscribe(res => {
-      if(res.inasistencia.fecha){
+      if (res.inasistencia.fecha) {
         res.inasistencia.fecha = new Date(res.inasistencia.fecha).toLocaleDateString("es");
       }
-      
-      this.estudiante.ultimaInasistencia = res.inasistencia;
+      this.ultimaInasistencia = res.inasistencia;
     })
   }
   mostrarAcudiente() {
@@ -222,6 +226,13 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
     Toast.fire({
       icon: 'success',
       title: 'La descarga comenzara en breve: '
+    })
+  }
+
+  getResumenAyudas() {
+    this.ayudaService.resumenAyudasEstudiantes(this.estudiante.id).subscribe(res => {
+      this.resumenAyudas = res.lista;
+      console.log(this.resumenAyudas)
     })
   }
 }
