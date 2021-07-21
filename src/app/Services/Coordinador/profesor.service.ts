@@ -22,4 +22,8 @@ export class ProfesorService {
   delete(profesor:number):Observable<any>{
     return this.http.delete(this.urlEndPoint+profesor);
   }
+
+  profesoresSinGrupo():Observable<any>{
+    return this.http.get(this.urlEndPoint+`sin-grupo`)
+  }
 }

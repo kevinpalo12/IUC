@@ -7,11 +7,23 @@ import { GlobalConstants } from 'src/app/common/global.constants';
   providedIn: 'root'
 })
 export class GrupoService {
-  private urlEndPoint = GlobalConstants.URL;
+  private urlEndPoint = GlobalConstants.URL+'grupo/';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
   constructor(private http: HttpClient) { }
 
   listarGrupos():Observable<any>{
-   return this.http.get(this.urlEndPoint + '/grupo/index');
+   return this.http.get(this.urlEndPoint + 'index');
+  }
+
+  getGrupos(page:number):Observable<any>{
+    return this.http.get(this.urlEndPoint+`/page/${page}`)
+  }
+
+  nroEstudiantes(id:number):Observable<any>{
+    return this.http.get(this.urlEndPoint+`nro/${id}`)
+  }
+
+  create(grupo):Observable<any>{
+    return this.http.post(this.urlEndPoint+`create`,grupo)
   }
 }

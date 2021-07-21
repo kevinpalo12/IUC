@@ -31,6 +31,7 @@ import { CrearRegistroPsicologicoComponent } from './coordinador/hoja-vida/crear
 import { PdfInformePsicologicoComponent } from './coordinador/hoja-vida/pdf-informe-psicologico/pdf-informe-psicologico.component';
 import { CompleteEstudentInfoComponent } from './coordinador/hoja-vida/complete-estudent-info/complete-estudent-info.component';
 import { CrearProfesorComponent } from './coordinador/lista-profesores/crear-profesor/crear-profesor.component';
+import { CrearGrupoComponent } from './coordinador/grupos/crear-grupo/crear-grupo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +53,8 @@ import { CrearProfesorComponent } from './coordinador/lista-profesores/crear-pro
     CrearRegistroPsicologicoComponent,
     PdfInformePsicologicoComponent,
     CompleteEstudentInfoComponent,
-    CrearProfesorComponent
+    CrearProfesorComponent,
+    CrearGrupoComponent
   ],
   imports: [
     BrowserModule,
