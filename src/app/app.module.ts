@@ -32,6 +32,10 @@ import { PdfInformePsicologicoComponent } from './coordinador/hoja-vida/pdf-info
 import { CompleteEstudentInfoComponent } from './coordinador/hoja-vida/complete-estudent-info/complete-estudent-info.component';
 import { CrearProfesorComponent } from './coordinador/lista-profesores/crear-profesor/crear-profesor.component';
 import { CrearGrupoComponent } from './coordinador/grupos/crear-grupo/crear-grupo.component';
+import { BoardProfesorComponent } from './profesor/board-profesor/board-profesor.component';
+import { TomarAsistenciaComponent } from './profesor/tomar-asistencia/tomar-asistencia.component';
+import { VerEstudianteComponent } from './profesor/ver-estudiante/ver-estudiante.component';
+import { NavProfesorComponent } from './profesor/nav-profesor/nav-profesor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +58,11 @@ import { CrearGrupoComponent } from './coordinador/grupos/crear-grupo/crear-grup
     PdfInformePsicologicoComponent,
     CompleteEstudentInfoComponent,
     CrearProfesorComponent,
-    CrearGrupoComponent
+    CrearGrupoComponent,
+    BoardProfesorComponent,
+    TomarAsistenciaComponent,
+    VerEstudianteComponent,
+    NavProfesorComponent
   ],
   imports: [
     BrowserModule,
