@@ -1,1 +1,70 @@
-<p>tomar-asistencia works!</p>
+<div class="row d-flex justify-content-center" *ngIf="estudiantes">
+    <div class="col-sm-12 mx-auto mt-2 text-center">
+        <h4>Toma de Asistencia para el grupo: {{grupo.grado +'-'+grupo.identificador}}</h4>
+    </div>
+    <div class="col-sm-5">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estudiante of estudiantes">
+                    <td>{{estudiante.documento}}</td>
+                    <td>{{estudiante.nombre}}</td>
+                    <td>{{estudiante.apellido}}</td>
+                    <td>{{estudiante.edad}}</td>
+                    <td class="boton d-flex justify-content-center" (click)="agregarAListaInasistentes(estudiante)"><i
+                            class="far fa-calendar-plus"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="vl"></div>
+    <div class="col-sm-5 d-flex justify-content-center">
+        <table class="table table-bordered table-striped col-sm-12">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Accion</th>
+                    <th>Archivo Inasistencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let estudiante of inasistentes">
+                    <td>{{estudiante.documento}}</td>
+                    <td>{{estudiante.nombre}}</td>
+                    <td>{{estudiante.apellido}}</td>
+                    <td>{{estudiante.edad}}</td>
+                    <td><input class="form-control form-control-sm" type="file" name="{{estudiante.id+'_file'}}" id="{{estudiante.id+'_file'}}" accept="image/png, image/jpeg, .pdf"></td>
+                    <td class="boton d-flex justify-content-center" (click)="quitarInasistencia(estudiante)"><i
+                            class="far fa-calendar-minus"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-success col-sm-2" type="button" (click)="guardarInasistencia()">Guardar Inansistencia</button>
+</div>
+<div class="row d-flex justify-content-center" *ngIf="!estudiantes">
+    <form (change)=filtrarGrupo(grupo)>
+        <div class="formulario row">
+            <div class="form-group col-sm-12">
+                <label for="Ingreso">
+                    <h4>Grupo</h4>
+                </label>
+                <select class="form-control" #grupo id="grupo">
+                    <option value="" selected>Seleccione Grupo...</option>
+                    <option value="{{gru.id}}" *ngFor="let gru of grupos">{{gru.grado+'-'+gru.identificador}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>

@@ -79,8 +79,13 @@ export class EstudianteService {
       })
     );
   }
+
   porGrupo(id,page): Observable<any> {
     return this.http.get(this.urlEndPoint + '/estudiante/grupo/'+id+'/'+page);
+  }
+
+  porGrupoNoPage(id): Observable<any> {
+    return this.http.get(this.urlEndPoint + '/estudiante/grupo/'+id);
   }
 
   create(estudiante: Estudiante):Observable<any>{   
@@ -115,5 +120,13 @@ export class EstudianteService {
   
   getUltimaExcusa(id:number):Observable<any>{
     return this.http.get(this.urlEndPoint+'/estudiante/inasistencia/ultima/'+id);
+  }
+
+  agregarInasistencia(inasistencia):Observable<any>{
+    return this.http.post(this.urlEndPoint+`/inasistencia/create`,inasistencia)
+  }
+
+  agregarExcusa(file,id):Observable<any>{
+    return this.http.post(this.urlEndPoint+`/inasistencia/saveExcusa/${id}`,file);
   }
 }
