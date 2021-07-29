@@ -114,7 +114,7 @@ export class ListaEstudiantesComponent implements OnInit {
     })
   }
 
-  editarEstudiante(estudiante){
+  editarEstudiante(estudiante) {
     const modalRef = this.modalService.open(EditarEstudianteComponent, { size: 'lg', scrollable: true });
     modalRef.componentInstance.estudiante = estudiante;
     modalRef.componentInstance.grupos = this.grupos;
@@ -157,7 +157,7 @@ export class ListaEstudiantesComponent implements OnInit {
               `${estudiante.nombre} ${estudiante.apellido} eliminado !`,
               'success'
             )
-           
+
           }
         )
 
@@ -166,7 +166,7 @@ export class ListaEstudiantesComponent implements OnInit {
   }
 
 
-irHojaVida(id){
-  this.router.navigate(['coordinador/estudiante/' + id]);
-}
+  irHojaVida(id) {
+    this.router.navigate(['coordinador/estudiante/' + id]);
+  }
 }

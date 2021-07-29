@@ -1,3 +1,4 @@
+import { AcudidosComponent } from "./acudiente/acudidos/acudidos.component";
 import { AcudienteComponent } from "./acudiente/acudiente.component";
 import { CoordinadorComponent } from "./coordinador/coordinador.component";
 import { DashBoardComponent } from "./coordinador/dash-board/dash-board.component";
@@ -78,6 +79,16 @@ export const routeList = [
   {
     path: 'acudiente',
     component: AcudienteComponent,
+    children: [
+      {
+        path: 'encargados/:cedula',
+        component: AcudidosComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'encargados/:cedula'
+      }
+    ]
   },
   {
     path: '**',

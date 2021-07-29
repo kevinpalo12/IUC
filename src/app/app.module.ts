@@ -36,6 +36,11 @@ import { BoardProfesorComponent } from './profesor/board-profesor/board-profesor
 import { TomarAsistenciaComponent } from './profesor/tomar-asistencia/tomar-asistencia.component';
 import { VerEstudianteComponent } from './profesor/ver-estudiante/ver-estudiante.component';
 import { NavProfesorComponent } from './profesor/nav-profesor/nav-profesor.component';
+import { AcudienteNavComponent } from './acudiente/acudiente-nav/acudiente-nav.component';
+import { AcudidosComponent } from './acudiente/acudidos/acudidos.component';
+import { InasistenciasComponent } from './acudiente/inasistencias/inasistencias.component';
+import { AnotadorComponent } from './acudiente/anotador/anotador.component';
+import { InicioAcudienteComponent } from './inicio-acudiente/inicio-acudiente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +67,12 @@ import { NavProfesorComponent } from './profesor/nav-profesor/nav-profesor.compo
     BoardProfesorComponent,
     TomarAsistenciaComponent,
     VerEstudianteComponent,
-    NavProfesorComponent
+    NavProfesorComponent,
+    AcudienteNavComponent,
+    AcudidosComponent,
+    InasistenciasComponent,
+    AnotadorComponent,
+    InicioAcudienteComponent
   ],
   imports: [
     BrowserModule,
