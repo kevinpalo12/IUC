@@ -21,10 +21,10 @@
                     <a class="nav-link" [routerLink]="['estudiante/page/0']">Estudiantes</a>
                 </li>
                 <li class="nav-item col-sm-3">
-                    <a class="nav-link" [routerLink]="['profesores']">Profesores</a>
+                    <a class="nav-link" [routerLink]="['profesores/page/0']">Profesores</a>
                 </li>
                 <li class="nav-item col-sm-3">
-                    <a class="nav-link" [routerLink]="['grupos']">Grupos</a>
+                    <a class="nav-link" [routerLink]="['grupos/page/0']">Grupos</a>
                 </li>
             </ul>
 
@@ -32,7 +32,4 @@
         <span class="cerrar col-sm-2"> Bienvenido {{nombre}} - <button type="button" class="btn btn-success cerrar"
                 (click)="cerrarSesion()">Cerrar Sesion</button> </span>
     </nav>
-
-
-
 </div>

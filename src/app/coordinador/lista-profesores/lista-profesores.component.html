@@ -1,1 +1,41 @@
-<p>lista-profesores works!</p>
+<div class="row">
+ 
+    <div class="col-sm-12">
+    
+        <div class="card-body text-secondary col-sm-12 mr-5">
+            <div class="col-sm-1 float-right">
+                <a  class="btn btn-success col-sm-12 grandes" (click)="crearProfesor()"><i class="fas fa-user-plus"></i></a>
+            </div>
+            <h5 class="card-title">Listado de Profesores</h5>
+       
+            <div *ngIf="profesores?.length<=0" class="alert alert-info nohay">
+                No hay registros en la base de datos
+            </div>
+            <table class="table table-bordered table-striped m-5" *ngIf="profesores?.length>0">
+                <thead>
+                    <tr>
+                        <th>id Interno</th>
+                        <th>Nombre Completo</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th colspan="2">Total: {{paginador.totalElements}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let profesor of profesores">
+                        <td>{{profesor.id}}</td>
+                        <td>{{profesor.nombre}}</td>
+                        <td>{{profesor.correo}}</td>
+                        <td>{{profesor.telefono }}</td>
+                        <td class="boton" (click)="editarProfesor(profesor)"><i class="fas fa-user-edit"></i></td>
+                        <td class="boton" (click)="delete(profesor)"><i class="fas fa-trash-alt"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="float-right paginador">
+                <paginator-nav *ngIf="paginador" [paginador]="paginador" [lista]="'/coordinador/estudiante/page/'"></paginator-nav>
+            </div>
+           
+        </div>
+    </div>
+</div>

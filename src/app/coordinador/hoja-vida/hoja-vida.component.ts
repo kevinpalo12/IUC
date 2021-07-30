@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Estudiante } from 'src/app/common/modelos/estudiante';
+import { Estudiante, ultimaInasistencia } from 'src/app/common/modelos/estudiante';
 import { Grupo } from 'src/app/common/modelos/grupo';
+import { AyudaService } from 'src/app/services/Coordinador/ayuda.service';
 import { EstudianteService } from 'src/app/services/Coordinador/estudiante.service';
 import { GrupoService } from 'src/app/services/Coordinador/grupo.service';
 import Swal from 'sweetalert2';
@@ -22,11 +23,14 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
   estudiante: Estudiante;
   grupos: Grupo[];
   @ViewChild(PdfInformePsicologicoComponent, { static: false }) generadorPDF: PdfInformePsicologicoComponent;
+  resumenAyudas: any[];
+  ultimaInasistencia:any = new ultimaInasistencia();;
 
   constructor(
     private route: ActivatedRoute,
     private estudianteService: EstudianteService,
     private grupoService: GrupoService,
+    private ayudaService: AyudaService,
     private modalService: NgbModal) {
   }
 
@@ -37,6 +41,9 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
         res => {
           this.estudiante = res;
           this.estudiante.nacimiento = new Date(res.nacimiento).toLocaleDateString()
+          this.listarActividades();
+          this.ultimaExcusa();
+          this.getResumenAyudas();
         })
     });
   }
@@ -45,6 +52,14 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  ultimaExcusa() {
+    this.estudianteService.getUltimaExcusa(this.estudiante.id).subscribe(res => {
+      if (res.inasistencia.fecha) {
+        res.inasistencia.fecha = new Date(res.inasistencia.fecha).toLocaleDateString("es");
+      }
+      this.ultimaInasistencia = res.inasistencia;
+    })
+  }
   mostrarAcudiente() {
     Swal.fire({
       title: `<b>${this.estudiante.acudiente.nombre + ' ' + this.estudiante.acudiente.apellido}</b>`,
@@ -54,7 +69,7 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
         `<hr><p><b>Parentesco: </b>${this.estudiante.parentesco}</p> ` +
         `<p><b>Teléfono: </b>${this.estudiante.acudiente.telefono}</p> ` +
         `<p><b>Teléfono alterno: </b>${this.estudiante.acudiente.telefonoAlterno}</p> ` +
-        `<p><b>Dirección: </b>${this.estudiante.acudiente.direccion}</p> `+
+        `<p><b>Dirección: </b>${this.estudiante.acudiente.direccion}</p> ` +
         `<p><b>Barrio: </b>${this.estudiante.acudiente.barrio}</p> `,
       showCloseButton: true,
       showCancelButton: true,
@@ -124,7 +139,7 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
         if (!result.isConfirmed) {
           this.descargarPdf();
         }
-        else{
+        else {
           const modalRef = this.modalService.open(CompleteEstudentInfoComponent, { size: 'lg', scrollable: true });
           modalRef.componentInstance.estudiante = this.estudiante;
           modalRef.result.then((data) => {
@@ -138,7 +153,7 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
 
   }
   descargarPdf() {
-    this.generadorPDF.downloadPdf(this.estudiante);
+    this.generadorPDF.downloadPdfPsicologico(this.estudiante);
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -157,9 +172,9 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
     })
   }
 
-  editarEstudiante(estudiante){
+  editarEstudiante(estudiante) {
     this.listarGrupos(estudiante);
-  
+
   }
 
   listarGrupos(estudiante) {
@@ -168,6 +183,56 @@ export class HojaVidaComponent implements OnInit, OnDestroy {
       const modalRef = this.modalService.open(EditarEstudianteComponent, { size: 'lg', scrollable: true });
       modalRef.componentInstance.estudiante = estudiante;
       modalRef.componentInstance.grupos = this.grupos;
+    })
+  }
+
+  listarActividades() {
+    this.estudianteService.getActividadesEstudiante(this.estudiante.id).subscribe(res => {
+      this.estudiante.actividades = res.actividades;
+      let actividadesActivas = []
+      let actividadesInactivas = []
+      res.actividades.forEach(element => {
+
+        element.fecha_inicio = new Date(element.fecha_inicio).toLocaleDateString("es");
+
+        if (element.activo) {
+          actividadesActivas.push(element)
+        }
+        else {
+          element.fecha_fin = new Date(element.fecha_fin).toLocaleDateString("es");
+          actividadesInactivas.push(element)
+        }
+      });
+      this.estudiante.actividades = actividadesActivas;
+      this.estudiante.actividadesInac = actividadesInactivas;
+    })
+  }
+
+  descargarHojaVida() {
+
+    this.generadorPDF.downloadPdfHojaVida(this.estudiante);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'La descarga comenzara en breve: '
+    })
+  }
+
+  getResumenAyudas() {
+    this.ayudaService.resumenAyudasEstudiantes(this.estudiante.id).subscribe(res => {
+      this.resumenAyudas = res.lista;
+      console.log(this.resumenAyudas)
     })
   }
 }

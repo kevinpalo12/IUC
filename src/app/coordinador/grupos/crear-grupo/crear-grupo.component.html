@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">Crear Grupo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="p-3 modal-body">
+    <div class="row">
+
+        <div class="row p-3 col-sm-12">
+            <form [formGroup]="regularForm">
+                <div class="formulario row col-sm-12">
+                    <div class="form-group col-sm-12">
+                        <label for="grado">Grado (nivel escolaridad)</label>
+                        <input #grado type="text" class="form-control" id="grado" name="grado"
+                            aria-describedby="emailHelp" placeholder="Grado" formControlName="grado">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="nacimiento">Identificador</label>
+                        <input #telefono type="text" class="form-control" id="identificador" name="identificador"
+                            aria-describedby="emailHelp" placeholder="Identificador" formControlName="identificador">
+                    </div>
+                    <div class="col-sm-12 pt-2">
+                        <label for="fechaEntrega">Director de grupo</label>
+                        <select class="form-control col-sm-12" #profesor id="profesor" formControlName="profesor">
+                            <option value="" selected>Seleccione Profesor...</option>
+                            <option value="{{profesor.id}}" *ngFor="let profesor of profesores">{{profesor.nombre}}</option>
+                        </select>
+        
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success col-sm-4" (click)="crearGrupo()">Crear <i
+            class="fas fa-edit"></i></button>
+    <button class="btn btn-danger col-sm-4" (click)="close()">Cancelar <i class="fas fa-times"></i></button>
+</div>

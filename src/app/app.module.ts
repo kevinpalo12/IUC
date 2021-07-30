@@ -30,6 +30,17 @@ import { CrearAyudaComponent } from './coordinador/lista-ayudas/crear-ayuda/crea
 import { CrearRegistroPsicologicoComponent } from './coordinador/hoja-vida/crear-registro-psicologico/crear-registro-psicologico.component';
 import { PdfInformePsicologicoComponent } from './coordinador/hoja-vida/pdf-informe-psicologico/pdf-informe-psicologico.component';
 import { CompleteEstudentInfoComponent } from './coordinador/hoja-vida/complete-estudent-info/complete-estudent-info.component';
+import { CrearProfesorComponent } from './coordinador/lista-profesores/crear-profesor/crear-profesor.component';
+import { CrearGrupoComponent } from './coordinador/grupos/crear-grupo/crear-grupo.component';
+import { BoardProfesorComponent } from './profesor/board-profesor/board-profesor.component';
+import { TomarAsistenciaComponent } from './profesor/tomar-asistencia/tomar-asistencia.component';
+import { VerEstudianteComponent } from './profesor/ver-estudiante/ver-estudiante.component';
+import { NavProfesorComponent } from './profesor/nav-profesor/nav-profesor.component';
+import { AcudienteNavComponent } from './acudiente/acudiente-nav/acudiente-nav.component';
+import { AcudidosComponent } from './acudiente/acudidos/acudidos.component';
+import { InasistenciasComponent } from './acudiente/inasistencias/inasistencias.component';
+import { AnotadorComponent } from './acudiente/anotador/anotador.component';
+import { InicioAcudienteComponent } from './inicio-acudiente/inicio-acudiente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +61,18 @@ import { CompleteEstudentInfoComponent } from './coordinador/hoja-vida/complete-
     CrearAyudaComponent,
     CrearRegistroPsicologicoComponent,
     PdfInformePsicologicoComponent,
-    CompleteEstudentInfoComponent
+    CompleteEstudentInfoComponent,
+    CrearProfesorComponent,
+    CrearGrupoComponent,
+    BoardProfesorComponent,
+    TomarAsistenciaComponent,
+    VerEstudianteComponent,
+    NavProfesorComponent,
+    AcudienteNavComponent,
+    AcudidosComponent,
+    InasistenciasComponent,
+    AnotadorComponent,
+    InicioAcudienteComponent
   ],
   imports: [
     BrowserModule,

@@ -12,22 +12,20 @@ export class PdfInformePsicologicoComponent implements OnInit {
   constructor(private registroService: RegistroPsicologicoService) { }
 
   registros;
-  estudiante:Estudiante;
+  estudiante: Estudiante;
   monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-];
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
 
 
   ngOnInit(): void {
   }
 
-  downloadPdf(estudiante) {
+  downloadPdfPsicologico(estudiante) {
     this.estudiante = estudiante
     this.estudiante['solicitud'] = new Date()
-    this.estudiante.nacimiento=new Date(estudiante.nacimiento)
+    this.estudiante.nacimiento = new Date(estudiante.nacimiento)
     this.obtenerRegistrosEstudiante(estudiante.id)
-
-
   }
 
 
@@ -35,23 +33,32 @@ export class PdfInformePsicologicoComponent implements OnInit {
     this.registroService.getRegistros(estudiante).subscribe(
       res => {
         this.registros = res;
-        this.descargar()
+        this.descargar(true)
       }
     )
   }
 
-  descargar(){
+  descargar(psicologico: boolean) {
     let nombre = this.estudiante.nombre.split(' ');
     let apellido = this.estudiante.apellido.split(' ');
-    let final='';
+    let final = '';
+    let elementPrint = ''
+    if (psicologico) {
+      final = 'Historial_Acompanamientos_'
+      elementPrint = 'element-to-print-psicologico'
+    } else {
+      final = 'Hoja_de_vida_'
+      elementPrint = 'element-to-print-vida'
+    }
+
     nombre.forEach(element => {
-      final+=element+'_'
+      final += element + '_'
     });
     apellido.forEach(element => {
-      final+=element+'_'
+      final += element + '_'
     });
-   final= final.substr(0,final.length-1)
-    var element = document.getElementById('element-to-print');
+    final = final.substr(0, final.length - 1)
+    var element = document.getElementById(elementPrint);
     var opt = {
       margin: 1,
       filename: `Historial_Acompanamientos_${final}.pdf`,
@@ -60,5 +67,22 @@ export class PdfInformePsicologicoComponent implements OnInit {
       jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
     var worker = html2pdf().set(opt).from(element).save();
+  }
+
+  //
+  downloadPdfHojaVida(estudiante) {
+    this.estudiante = estudiante
+    this.estudiante['solicitud'] = new Date()
+    this.estudiante.nacimiento = new Date(estudiante.nacimiento)
+    this.filtrarAyudas();
+    setTimeout(() => {
+      this.descargar(false)
+    }, 100);
+
+  }
+
+  filtrarAyudas() {
+   
+    this.estudiante.ayudas = this.estudiante.ayudas.filter(ayuda => new Date(ayuda.fechaEntrega) <= new Date())
   }
 }

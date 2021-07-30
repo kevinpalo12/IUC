@@ -1,0 +1,34 @@
+.vl {
+    border-left: 1px solid black;
+    height: 70vh;
+}
+.table{
+    width: 80%;
+    background-color: white;
+}
+.paginador{
+    margin-right: 20%;
+}
+.fa-user-edit {
+    color: black;
+}
+.fa-trash-alt {
+    color: red;
+}
+
+.fa-eye {
+    color: grey;
+}
+td.boton:hover {
+    cursor: pointer;
+    .fa-user-edit {
+        color: green;
+    }
+    .fa-trash-alt {
+        color: darkred;
+    }
+
+    .fa-eye {
+        color: green;
+    }
+}

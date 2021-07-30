@@ -1,9 +1,9 @@
-<div id="element-to-print" *ngIf="estudiante">
+<div id="element-to-print-psicologico" *ngIf="estudiante">
     <div #header id="header" class="mb-3 row">
         <div class="col-sm-12 row">
             <img src="../../../../assets/logoAlcaldia.png" alt="logoAlcaldia" class="alcaldia col-sm-3">
             <div class="col-sm-9 text-center">
-                <h5>ALCALDIA DE MANIZALES <br> SECRETARIA DE EDICACIÓN<br>UNIDAD DE CALIDAD<br>PROGRAMA DE INCLUSIÓN
+                <h5>ALCALDIA DE MANIZALES <br> SECRETARIA DE EDUCACIÓN<br>UNIDAD DE CALIDAD<br>PROGRAMA DE INCLUSIÓN
                     EDUCATIVA</h5>
                 <h6 class="mt-1">ATENCIÓN Y SEGUIMIENTO ESTUDIANTES</h6>
             </div>
@@ -22,11 +22,11 @@
             <p class="col-sm-3"><b>Escolaridad: </b>{{estudiante.grupo.grado+'°'}}</p>
             <p class="col-sm-7"><b>Institucion: </b>{{'Instituto Universitario de Caldas'}}</p>
             <p class="col-sm-2"><b>Eps: </b>{{estudiante.eps}}</p>
-            <p class="col-sm-7"><b>Situacion de Desplazamiento: </b>{{estudiante.desplazado}}</p> 
+            <p class="col-sm-7"><b>Situacion de Desplazamiento: </b>{{estudiante.desplazado}}</p>
             <p class="col-sm-2"><b>Estrato: </b>{{estudiante.acudiente.estrato}}</p>
             <p class="col-sm-7"><b>Direccion de Residencia: </b>{{estudiante.acudiente.direccion}}</p>
             <p class="col-sm-4"><b>Barrio: </b>{{estudiante.acudiente.barrio}}</p>
-            
+
             <p class="col-sm-4"><b>Teléfono: </b>{{estudiante.acudiente.telefono}}</p>
             <p class="col-sm-4"><b>Otro teléfono: </b>{{estudiante.acudiente.telefonoAlterno}}</p>
             <p class="col-sm-4"><b>Otro teléfono: </b>{{estudiante.acudiente.telefonoAlterno}}</p>
@@ -47,6 +47,104 @@
             <tr *ngFor="let registro of registros">
                 <td>{{registro.createAt}}</td>
                 <td>{{registro.anotacion}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="element-to-print-vida" *ngIf="estudiante">
+    <div #header id="header" class="mb-3 row">
+        <div class="col-sm-12 row">
+            <img src="../../../../assets/logo.png" alt="logoColegio" class="col-sm-6">
+            <div class="col-sm-6 float-right" id="image-profile">
+                <img src="../../../../assets/user.png" alt="" *ngIf="!estudiante.foto" height="100px"
+                    class="float-right">
+                <img src="{{estudiante.foto}}" alt="" *ngIf="estudiante.foto" height="100px" class="float-right">
+            </div>
+        </div>
+        <hr class="col-sm-12">
+        <div class="col-sm-12 row before">
+            <h4 class="text-center col-sm-12"><b>Hoja de vida de:</b><br>{{estudiante.nombre+' '+estudiante.apellido}}
+            </h4>
+            <hr class="col-sm-12">
+            <p class="col-sm-3"><b>Nro. Interno </b>{{estudiante.id}}</p>
+            <div class="col-sm-9">
+                <p class="float-right">
+                    <b>Fecha Expedición:
+                    </b>{{estudiante.solicitud.getDate()+'/'+monthNames[estudiante.solicitud.getMonth()]+'/'+estudiante.solicitud.getFullYear()}}
+                </p>
+            </div>
+            <p class="col-sm-5"><b>Fecha Nacimiento:
+                </b>{{estudiante.nacimiento.getDate()+'/'+monthNames[estudiante.nacimiento.getMonth()]+'/'+estudiante.nacimiento.getFullYear()}}
+            </p>
+            <p class="col-sm-2"><b>Edad: </b>{{estudiante.edad}}</p>
+            <p class="col-sm-3"><b>Escolaridad: </b>{{estudiante.grupo.grado+'°'}}</p>
+            <p class="col-sm-7"><b>Institucion: </b>{{'Instituto Universitario de Caldas'}}</p>
+            <p class="col-sm-2"><b>Eps: </b>{{estudiante.eps}}</p>
+            <p class="col-sm-7"><b>Situacion de Desplazamiento: </b>{{estudiante.desplazado}}</p>
+            <p class="col-sm-2"><b>Estrato: </b>{{estudiante.acudiente.estrato}}</p>
+            <p class="col-sm-7"><b>Direccion de Residencia: </b>{{estudiante.acudiente.direccion}}</p>
+            <p class="col-sm-4"><b>Barrio: </b>{{estudiante.acudiente.barrio}}</p>
+
+            <p class="col-sm-4"><b>Teléfono: </b>{{estudiante.acudiente.telefono}}</p>
+            <p class="col-sm-4"><b>Otro teléfono: </b>{{estudiante.acudiente.telefonoAlterno}}</p>
+            <p class="col-sm-4"><b>Otro teléfono: </b>{{estudiante.acudiente.telefonoAlterno}}</p>
+            <p class="col-sm-7"><b>Acudiente: </b>{{estudiante.acudiente.nombre+' '+estudiante.acudiente.apellido}}</p>
+            <p class="col-sm-5"><b>Parentesco: </b>{{estudiante.parentesco}}</p>
+        </div>
+        <hr class="col-sm-12">
+        <div class="row col-sm-12 ">
+            <h5 class="col-sm-12">Actividades Extra-Clase</h5>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped col-sm-12">
+        <tbody>
+            <tr>
+                <th class="anotation text-center" scope="col" colspan="3">Activas</th>
+            </tr>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha Inicio</th>
+            </tr>
+            <tr *ngFor="let actividad of estudiante.actividades">
+                <td>{{actividad.nombre}}</td>
+                <td>{{actividad.descripcion}}</td>
+                <td>{{actividad.fecha_inicio}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered table-striped col-sm-12 before">
+        <tbody>
+            <tr>
+                <th class="anotation text-center" scope="col" colspan="4">Inactivas</th>
+            </tr>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Finalizacion</th>
+            </tr>
+            <tr *ngFor="let actividad of estudiante.actividadesInac">
+                <td>{{actividad.nombre}}</td>
+                <td>{{actividad.descripcion}}</td>
+                <td>{{actividad.fecha_inicio}}</td>
+                <td>{{actividad.fecha_fin}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col-sm-12 row ">
+        <hr class="col-sm-12">
+        <h5 class="col-sm-12 ">Ayudas entregadas por el colegio</h5>
+    </div>
+    <table class="table table-bordered table-striped col-sm-12">
+        <tbody>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Fecha Entrega</th>
+            </tr>
+            <tr *ngFor="let ayuda of estudiante.ayudas">
+                <td>{{ayuda.descripcion}}</td>
+                <td>{{ayuda.fechaEntrega}}</td>
             </tr>
         </tbody>
     </table>

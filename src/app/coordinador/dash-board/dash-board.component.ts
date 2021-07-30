@@ -26,24 +26,17 @@ export class DashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardService.obtenerNumeros().subscribe(res => {
       if (res.mensaje) {
-        res=res.respuesta;
+        res = res.respuesta;
         this.estudiantes = res.estudiantes;
         this.grupos = res.grupos;
-        this.ayudas=res.ayudas;
-        this.profesores=res.profesor;
-      }     
+        this.ayudas = res.ayudas;
+        this.profesores = res.profesor;
+      }
     })
   }
 
   navegacion(caso) {
+    this.router.navigate(['coordinador/' + caso + '/page/0']);
 
-    if(caso==='estudiante' || caso=='ayudas'){
-      
-    this.router.navigate(['coordinador/' + caso+'/page/0']);
-    }
-    else{
-
-      this.router.navigate(['coordinador/' + caso]);
-    }
   }
 }

@@ -7,7 +7,7 @@ import { GlobalConstants } from 'src/app/common/global.constants';
   providedIn: 'root'
 })
 export class AyudaService {
-  private urlEndPoint = GlobalConstants.URL+'ayuda/';
+  private urlEndPoint = GlobalConstants.URL + 'ayuda/';
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient) { }
 
@@ -15,19 +15,23 @@ export class AyudaService {
     return this.http.get(this.urlEndPoint + 'all')
   }
 
-  getAyudasCantidad():Observable<any>{
-    return this.http.get(this.urlEndPoint+'allCantidad')
+  getAyudasCantidad(): Observable<any> {
+    return this.http.get(this.urlEndPoint + 'allCantidad')
   }
 
-  crear(ayuda):Observable<any>{
-    return this.http.post(this.urlEndPoint+'create',ayuda);
+  crear(ayuda): Observable<any> {
+    return this.http.post(this.urlEndPoint + 'create', ayuda);
   }
 
-  actualizarEntrega(ayuda):Observable<any>{
-    return this.http.put(this.urlEndPoint+`agregarEntrega/${ayuda.id}`,{proxima:ayuda.proxima})
+  actualizarEntrega(ayuda): Observable<any> {
+    return this.http.put(this.urlEndPoint + `agregarEntrega/${ayuda.id}`, { proxima: ayuda.proxima })
   }
 
-  listaEstudiante(filtro,page):Observable<any>{
-    return this.http.get(this.urlEndPoint+`listFiltro/${filtro}/${page}`);
+  listaEstudiante(filtro, page): Observable<any> {
+    return this.http.get(this.urlEndPoint + `listFiltro/${filtro}/${page}`);
+  }
+
+  resumenAyudasEstudiantes(id: number):Observable<any> {
+    return this.http.get(this.urlEndPoint + `resumen-estudiante/${id}`)
   }
 }
